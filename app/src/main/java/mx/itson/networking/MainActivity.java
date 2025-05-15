@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements CaffenioAdapter.O
         btnSendReport.setEnabled(false);
         //Crear el reporte con información
         Reporte nuevoReporte = new Reporte();
-        String token = "Bearer a0f4dcad-5903-482f-8982-88ec8bc6156e";
+        String token = "TOKEN Viene en el postman";
+        String headerValue = "Bearer " + token;
 
         nuevoReporte.setNombreInteresado("Luis Alvarez");
         nuevoReporte.setDireccion("Niza Galiza #99");
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements CaffenioAdapter.O
         nuevoReporte.setImagen(readFromRaw(this, R.raw.image));
 
         IAPIReporteCiudadano interfaz = RetrofitClientInstanceReporteCiudadano.getRetrofitInstance().create(IAPIReporteCiudadano.class);
-        Call<Reporte> call = interfaz.postSendReporte(nuevoReporte, token);
+        Call<Reporte> call = interfaz.postSendReporte(nuevoReporte, headerValue);
         call.enqueue(new Callback<Reporte>() {
             @Override
             public void onResponse(Call<Reporte> call, Response<Reporte> response) {
